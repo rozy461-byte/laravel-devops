@@ -63,6 +63,8 @@ WORKDIR /var/www
 # Switch to our non-root user
 USER $user
 
+EXPOSE 9000
+
 # ENTRYPOINT runs the script first
 ENTRYPOINT ["entrypoint.sh"]
 
