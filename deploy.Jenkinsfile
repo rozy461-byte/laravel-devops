@@ -174,6 +174,10 @@ pipeline {
                                     # Stop old container
                                     docker stop ${APP_NAME} 2>/dev/null || true
                                     docker rm   ${APP_NAME} 2>/dev/null || true
+
+                                    # Removing the volume ensures that the NEW code inside the 
+                                    # docker image is copied to the volume for Nginx to see.
+                                    docker volume rm laravel-data 2>/dev/null || true
                                     
                                     # Start new container with .env file
                                     docker run -d \\
@@ -183,6 +187,10 @@ pipeline {
                                         --env-file ${ENV_FILE} \\
                                         -v laravel-data:/var/www \\
                                         \${DOCKER_IMAGE}:${IMAGE_TAG}
+
+                                    # Ensures the new routes and config are loaded immediately
+                                    docker exec ${APP_NAME} php artisan route:clear
+                                    docker exec ${APP_NAME} php artisan config:clear
                                     
                                     # Verify
                                     sleep 5
