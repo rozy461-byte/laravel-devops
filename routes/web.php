@@ -12,3 +12,10 @@ Route::get('/health', function () {
         'database' => 'connected',
     ]);
 });
+
+Route::get('/contact', function () {
+    return response()->json([
+        'status' => 'contact page',
+        'database' => 'connected',
+    ]);
+});
