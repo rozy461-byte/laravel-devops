@@ -29,7 +29,7 @@ pipeline {
         DEPLOY_SERVER   = '185.199.53.175'
         DEPLOY_USER     = 'jenkins'
         DEPLOY_PORT     = '22'
-        APP_PORT        = '9000'
+        APP_PORT        = '8000'
         
         // .env file path on production server
         ENV_FILE        = '/home/jenkins/.local.env'
@@ -181,7 +181,7 @@ pipeline {
                                         --restart unless-stopped \\
                                         --network private-net \\
                                         --env-file ${ENV_FILE} \\
-                                        -p ${APP_PORT}:${APP_PORT} \\
+                                        -v laravel-data:/var/www \\
                                         \${DOCKER_IMAGE}:${IMAGE_TAG}
                                     
                                     # Verify
