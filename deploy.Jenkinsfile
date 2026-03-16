@@ -27,12 +27,12 @@ pipeline {
         
         // Deployment server configuration
         DEPLOY_SERVER   = '185.199.53.175'
-        DEPLOY_USER     = 'jenkins'
+        DEPLOY_USER     = 'rozina'
         DEPLOY_PORT     = '22'
         APP_PORT        = '8000'
         
         // .env file path on production server
-        ENV_FILE        = '/home/jenkins/.local.env'
+        ENV_FILE        = '/home/rozina/.laravel.env'
     }
 
     stages {
